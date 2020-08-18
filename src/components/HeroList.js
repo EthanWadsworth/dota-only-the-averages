@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import HeroCard from './HeroCard'
 import SearchHeader from './SearchHeader'
 import MainNavbar from './MainNavbar'
+import Footer from './Footer'
 
 class HeroList extends Component {
     constructor() {
@@ -43,6 +44,7 @@ class HeroList extends Component {
                         {heroCards}
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }
