@@ -19,6 +19,13 @@ class HeroList extends Component {
         this.onChange = this.onChange.bind(this)
     }
 
+    componentDidMount() {
+        fetch('https://api.steampowered.com/IEconDOTA2_205790/GetHeroes/v1/?key=259B5B811C7301D542D4EDD31DD1CD1D&language=en', {mode: 'cors'})
+            .then(response => response.json())
+            .then(data => this.setState({heroes: data}))
+            console.log(this.state)
+    }
+
     // this works for rendering all heroes via the search param
     onChange = (event) => {
         const heroes = ['tiny', 'terrorblade', 'medusa', 'ember spirit', 'morphling', 'anti mage', 'void spirit']

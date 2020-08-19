@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import Switch from 'react-router-dom/Switch'
-import Route from 'react-router-dom/Route'
-import BrowserRouter from 'react-router-dom/BrowserRouter'
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
 import HomePage from './components/home/HomePage'
 import MatchResultsPage from './components/match-results/MatchResultsPage'
 import HeroList from './components/heroesPage/HeroList'

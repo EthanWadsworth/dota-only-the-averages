@@ -1,11 +1,6 @@
 import React from 'react'
 import {Navbar, Nav, Form, FormControl, Button, Container} from 'react-bootstrap'
-import Switch from 'react-router-dom/Switch'
-import Route from 'react-router-dom/Route'
-import Link from 'react-router-dom/Link'
-import HomePage from './home/HomePage'
-
-import MatchResultsPage from './match-results/MatchResultsPage'
+import {Link} from 'react-router-dom'
 
 function MainNavbar() {
     return (
@@ -27,12 +22,6 @@ function MainNavbar() {
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
-
-            {/* testing React Router  */}
-            {/* <Switch>
-            <Route path="/" component={HomePage} exact />
-            <Route path="/match" component={MatchResultsPage} />
-            </Switch> */}
         </div>
     )
 }
