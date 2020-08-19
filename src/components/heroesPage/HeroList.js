@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import HeroCard from './HeroCard'
 import SearchHeader from './SearchHeader'
-import MainNavbar from './MainNavbar'
-import Footer from './Footer'
 
 class HeroList extends Component {
     constructor() {
@@ -37,15 +35,14 @@ class HeroList extends Component {
         const heroCards = this.state.heroes.map(hero => <HeroCard hero={hero} />)
         return (
             <div>
-                <MainNavbar />
                 <SearchHeader onChange={this.onChange} />
                 <div className="container">
                     <div className="row">
                         {heroCards}
                     </div>
                 </div>
-                <Footer/>
             </div>
+            
         )
     }
 }

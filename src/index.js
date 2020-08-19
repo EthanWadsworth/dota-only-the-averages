@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HeroList from './components/HeroList'
 import * as serviceWorker from './serviceWorker';
+import App from './App'
+
 
 ReactDOM.render(
-    <HeroList />,
+  <App />,
   document.getElementById('root')
 );
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/herocard.css'
+import '../../styles/herocard.css'
 
 function HeroCard(props) {
     return (
