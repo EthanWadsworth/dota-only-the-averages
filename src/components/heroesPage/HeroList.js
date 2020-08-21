@@ -1,35 +1,29 @@
 import React, {Component} from 'react'
 import HeroCard from './HeroCard'
 import SearchHeader from './SearchHeader'
+import axios from 'axios'
 
 class HeroList extends Component {
     constructor() {
         super()
-        this.state = {
-            heroes: [
-                "tiny",
-                "terrorblade",
-                "morphling",
-                "medusa",
-                "ember spirit",
-                "anti mage",
-                "void spirit"
-            ]
-        }
+        this.state = {heroes: []}
         this.onChange = this.onChange.bind(this)
+        this.heroes = []
     }
 
+    // grabs all current heroes from the steam api from backend endpoint
+    // FIX later when actual backend in production plz
     componentDidMount() {
-        fetch('https://api.steampowered.com/IEconDOTA2_205790/GetHeroes/v1/?key=259B5B811C7301D542D4EDD31DD1CD1D&language=en', {mode: 'cors'})
-            .then(response => response.json())
-            .then(data => this.setState({heroes: data}))
-            console.log(this.state)
+        axios.get('http://localhost:5000/heroData')
+            .then(response => {
+                this.heroes = response.data.result.heroes
+                this.setState({heroes: this.heroes})
+            })
     }
 
     // this works for rendering all heroes via the search param
     onChange = (event) => {
-        const heroes = ['tiny', 'terrorblade', 'medusa', 'ember spirit', 'morphling', 'anti mage', 'void spirit']
-        const sample = heroes.filter(hero => hero.startsWith(event.target.value))
+        const sample = this.heroes.filter(hero => hero.localized_name.toLowerCase().startsWith(event.target.value.toLowerCase()))
         this.setState({heroes: sample})
 
     }
@@ -39,7 +33,7 @@ class HeroList extends Component {
     // This might be a bad idea because heroes will not be re-added upon deleting search query 
     // without a page reload
     render() {
-        const heroCards = this.state.heroes.map(hero => <HeroCard hero={hero} />)
+        const heroCards = this.state.heroes.map(hero => <HeroCard key={hero.id} hero={hero.localized_name} />)
         return (
             <div>
                 <SearchHeader onChange={this.onChange} />
@@ -48,8 +42,7 @@ class HeroList extends Component {
                         {heroCards}
                     </div>
                 </div>
-            </div>
-            
+            </div> 
         )
     }
 }

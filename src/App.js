@@ -13,9 +13,9 @@ function App() {
         <BrowserRouter>
         <MainNavbar />
           <Switch>
-            <Route path="/" component={HomePage} exact />
-            <Route path="/match" component={MatchResultsPage} />
+            <Route path="/match/:id" component={MatchResultsPage} />
             <Route path="/heroes" component={HeroList} />
+            <Route exact path="/" component={HomePage} />
           </Switch>
         </BrowserRouter>
       <Footer />
