@@ -1,31 +1,88 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Redirect} from 'react-router-dom'
+import ChartContainer from './ChartContainer'
 
 class MatchResultsPage extends Component {
     constructor() {
         super()
-        this.state = {items: []}
+        this.state = {
+            heroIds: [], 
+            items: [], 
+            radiantPlayers: [], 
+            direPlayers: [], 
+            invalidMatch: false
+        }
     }
 
     // gets all items from Steam api and stores them in state
     // will need to add call to match id as well to get all 10 player info to be placed into components
     // Change when production server is up and running
-    componentDidMount() {
-        axios.get('http://localhost:5000/items')
-        .then(response => {
-            this.setState({items: response.data.result.items})
-        })
-
+    async componentDidMount() {
         // need to fix the match endpoint to perform error handling when the match id is not found
         // send back status 404 ideally - this can be handled on client side
-        axios.get(`http://localhost:5000/match/${this.props.match.params.id}`)
-        .then(response => console.log(response))
+        // Current issue: Memory leak from asnyc call when match id is invalid on items request
+        const response = await axios.get(`http://localhost:5000/match/${this.props.match.params.id}`)
+        // .then(response => {
+            if (response.data.error) {
+                // return <Redirect to='/' />
+                // console.log('Error found')
+                this.setState({invalidMatch: true})
+            } else {
+                const numPlayersOnTeam = response.data.result.players.length/2
+                // console.log(typeof response.data.result.players.length)
+                this.setState({
+                    radiantPlayers: response.data.result.players.slice(0, numPlayersOnTeam),
+                    direPlayers: response.data.result.players.slice(numPlayersOnTeam)
+                })
+            }
+        // })
+        // .catch(e => this.setState({invalidMatch: true}))
+
+        // axios.get('http://localhost:5000/items')
+        // .then(response => {
+        //     this.setState({items: response.data.result.items})
+        // })
+    }
+
+    /** MAJOR ISSUE! There might be some insane recursion going on to the API in the component update 
+     * 
+     * Adjustment: need to remove the update and handle everything in mount
+    */
+
+    // If the match is valid, then grab item and hero data from the Steam API
+    componentDidUpdate(prevProps, prevState) {
+        if(!prevState.invalidMatch) {
+            axios.get('http://localhost:5000/items')
+            .then(response => {
+                this.setState({items: response.data.result.items})
+            })
+
+            axios.get('http://localhost:5000/heroData')
+            .then(response => {
+                const heroes = response.data.result.heroes
+                this.setState({heroes})
+            })
+        }
     }
 
     render() {
+        if (this.state.invalidMatch) {
+            return <Redirect to={'/'} />
+        }
         return (
             <div>
                 <h1>Match Results Page</h1>
+                <ChartContainer 
+                    players={this.state.radiantPlayers} 
+                    items={this.state.items}
+                    heroIds={this.state.heroIds}
+                />
+                <ChartContainer 
+                    players={this.state.direPlayers} 
+                    items={this.state.items}
+                    heroIds={this.state.heroIds}
+                />
             </div>
         )
     }
