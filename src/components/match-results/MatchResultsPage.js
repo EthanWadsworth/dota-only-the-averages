@@ -7,11 +7,12 @@ class MatchResultsPage extends Component {
     constructor() {
         super()
         this.state = {
-            heroIds: [], 
-            items: [], 
-            radiantPlayers: [], 
-            direPlayers: [], 
-            invalidMatch: false
+            heroIds: null, 
+            items: null, 
+            radiantPlayers: null, 
+            direPlayers: null, 
+            isLoading: true,
+            isInvalidMatch: false
         }
     }
 
@@ -27,7 +28,7 @@ class MatchResultsPage extends Component {
             if (response.data.error) {
                 // return <Redirect to='/' />
                 // console.log('Error found')
-                this.setState({invalidMatch: true})
+                this.setState({isInvalidMatch: true})
             } else {
                 const numPlayersOnTeam = response.data.result.players.length/2
                 // console.log(typeof response.data.result.players.length)
@@ -35,7 +36,19 @@ class MatchResultsPage extends Component {
                     radiantPlayers: response.data.result.players.slice(0, numPlayersOnTeam),
                     direPlayers: response.data.result.players.slice(numPlayersOnTeam)
                 })
+
+                axios.get('http://localhost:5000/items')
+                .then(response => {
+                    this.setState({items: response.data.result.items})
+                })
+
+                axios.get('http://localhost:5000/heroData')
+                .then(response => {
+                    const heroes = response.data.result.heroes
+                    this.setState({heroes})
+                })
             }
+            this.setState({isLoading: false})
         // })
         // .catch(e => this.setState({invalidMatch: true}))
 
@@ -51,23 +64,26 @@ class MatchResultsPage extends Component {
     */
 
     // If the match is valid, then grab item and hero data from the Steam API
-    componentDidUpdate(prevProps, prevState) {
-        if(!prevState.invalidMatch) {
-            axios.get('http://localhost:5000/items')
-            .then(response => {
-                this.setState({items: response.data.result.items})
-            })
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(!prevState.invalidMatch) {
+    //         axios.get('http://localhost:5000/items')
+    //         .then(response => {
+    //             this.setState({items: response.data.result.items})
+    //         })
 
-            axios.get('http://localhost:5000/heroData')
-            .then(response => {
-                const heroes = response.data.result.heroes
-                this.setState({heroes})
-            })
-        }
-    }
+    //         axios.get('http://localhost:5000/heroData')
+    //         .then(response => {
+    //             const heroes = response.data.result.heroes
+    //             this.setState({heroes})
+    //         })
+    //     }
+    // }
 
     render() {
-        if (this.state.invalidMatch) {
+        if (this.state.isLoading) {
+            return <h1>Loading...</h1>
+        }
+        if (this.state.isInvalidMatch) {
             return <Redirect to={'/'} />
         }
         return (
