@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 import ChartContainer from './ChartContainer'
+import InvalidMatchIdPage from '../matchNotFoundPage/InvalidMatchIdPage'
+import MainNavbar from '../MainNavbar'
 
 class MatchResultsPage extends Component {
     constructor() {
@@ -45,7 +47,7 @@ class MatchResultsPage extends Component {
                 axios.get('http://localhost:5000/heroData')
                 .then(response => {
                     const heroes = response.data.result.heroes
-                    this.setState({heroes})
+                    this.setState({heroIds: heroes})
                 })
             }
             this.setState({isLoading: false})
@@ -79,28 +81,42 @@ class MatchResultsPage extends Component {
     //     }
     // }
 
+    // componentWillUnmount() {
+    //     this.setState({isLoading: true, isInvalidMatch: false})
+    // }
+
+    componentDidUpdate() {
+        console.log('component updated')
+    }
+
     render() {
-        if (this.state.isLoading) {
-            return <h1>Loading...</h1>
-        }
-        if (this.state.isInvalidMatch) {
-            return <Redirect to={'/'} />
-        }
-        return (
-            <div>
-                <h1>Match Results Page</h1>
-                <ChartContainer 
-                    players={this.state.radiantPlayers} 
-                    items={this.state.items}
-                    heroIds={this.state.heroIds}
-                />
-                <ChartContainer 
-                    players={this.state.direPlayers} 
-                    items={this.state.items}
-                    heroIds={this.state.heroIds}
-                />
+        if (!this.state.heroIds || !this.state.items || !this.state.radiantPlayers || !this.state.direPlayers) {
+            return <div>
+                <MainNavbar />
+                <h1>Loading...</h1>
             </div>
-        )
+        }
+        else if (this.state.isInvalidMatch) {
+            return <Redirect to={'/'} />
+            // return <InvalidMatchIdPage />
+        } else {
+            return (
+                <div>
+                    <MainNavbar />
+                    <h1>Match Results Page</h1>
+                    <ChartContainer 
+                        players={this.state.radiantPlayers} 
+                        items={this.state.items}
+                        heroIds={this.state.heroIds}
+                    />
+                    <ChartContainer 
+                        players={this.state.direPlayers} 
+                        items={this.state.items}
+                        heroIds={this.state.heroIds}
+                    />
+                </div>
+            )
+        } 
     }
 }
 

@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
-        <MainNavbar />
+        {/* <MainNavbar /> */}
           <Switch>
             <Route path="/match/:id" component={MatchResultsPage} />
             <Route path="/heroes" component={HeroList} />

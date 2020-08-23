@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import HeroCard from './HeroCard'
 import SearchHeader from './SearchHeader'
 import axios from 'axios'
+import MainNavbar from '../MainNavbar'
 
 class HeroList extends Component {
     constructor() {
@@ -36,6 +37,7 @@ class HeroList extends Component {
         const heroCards = this.state.heroes.map(hero => <HeroCard key={hero.id} hero={hero.localized_name} />)
         return (
             <div>
+                <MainNavbar />
                 <SearchHeader onChange={this.onChange} />
                 <div className="container">
                     <div className="row">
