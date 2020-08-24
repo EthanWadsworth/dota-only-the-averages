@@ -48,8 +48,12 @@ class ChartRow extends Component {
     async getItemUrls(arr, prop) {
         const itemLinks = [];
         await this.asyncForEach(arr, async (item) => {
-            const response = await axios.get(`http://localhost:5000/itemIcons/${item.name}`)
-            itemLinks.push(<img key={item.id} src={response.data} alt={''} style={{width: "20px", height:"20px", float:"left", display: "inline"}}></img>)
+            if (!item) {
+                return
+            } else {
+                const response = await axios.get(`http://localhost:5000/itemIcons/${item.name}`)
+                itemLinks.push(<img key={item.id} src={response.data} alt={''} style={{width: "20px", height:"20px", float:"left", display: "inline"}}></img>)
+            }
         })
         this.setState({[prop]: itemLinks})
     }

@@ -13,6 +13,7 @@ class MatchResultsPage extends Component {
             items: null, 
             radiantPlayers: null, 
             direPlayers: null, 
+            matchData: null, // contains information such as first blood time and score, as well as the winner of the game
             isLoading: true,
             isInvalidMatch: false
         }
@@ -36,7 +37,8 @@ class MatchResultsPage extends Component {
                 // console.log(typeof response.data.result.players.length)
                 this.setState({
                     radiantPlayers: response.data.result.players.slice(0, numPlayersOnTeam),
-                    direPlayers: response.data.result.players.slice(numPlayersOnTeam)
+                    direPlayers: response.data.result.players.slice(numPlayersOnTeam),
+                    matchData: response.data.result
                 })
 
                 axios.get('http://localhost:5000/items')

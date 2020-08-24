@@ -7,12 +7,12 @@ import MainNavbar from '../MainNavbar'
 class HeroList extends Component {
     constructor() {
         super()
-        this.state = {heroes: []}
+        this.state = {heroes: [], items: null}
         this.onChange = this.onChange.bind(this)
         this.heroes = []
     }
 
-    // grabs all current heroes from the steam api from backend endpoint
+    // grabs all current heroes and items from the steam api from backend endpoint
     // FIX later when actual backend in production plz
     componentDidMount() {
         axios.get('http://localhost:5000/heroData')
@@ -20,6 +20,9 @@ class HeroList extends Component {
                 this.heroes = response.data.result.heroes
                 this.setState({heroes: this.heroes})
             })
+
+        axios.get('http://localhost:5000/items')
+        .then(response => this.setState({items:response.data.result.items}))
     }
 
     // this works for rendering all heroes via the search param
@@ -34,7 +37,7 @@ class HeroList extends Component {
     // This might be a bad idea because heroes will not be re-added upon deleting search query 
     // without a page reload
     render() {
-        const heroCards = this.state.heroes.map(hero => <HeroCard key={hero.id} hero={hero.localized_name} />)
+        const heroCards = this.state.heroes.map(hero => <HeroCard key={hero.id} hero={hero} items={this.state.items}/>)
         return (
             <div>
                 <MainNavbar />
