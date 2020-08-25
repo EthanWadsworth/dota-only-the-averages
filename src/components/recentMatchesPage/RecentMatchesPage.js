@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import MatchesTableContainer from './MatchesTableContainer'
+import HeroAveragesContainer from './HeroAveragesContainer'
 
 class RecentMatchesPage extends Component {
     constructor() {
@@ -8,7 +9,9 @@ class RecentMatchesPage extends Component {
         this.state = {
             isLoading: true,
             heroData: null,
-            matches: null
+            itemData: null,
+            matches: null,
+            heroId: null
         }
     }
     
@@ -19,10 +22,19 @@ class RecentMatchesPage extends Component {
     }
 
     // only load in all of the matches here, load in the rest of the match results individually
+    // error handling to add: handle invalid heroId - send user to 404 page
     async componentDidMount() {
-        const matches = await axios.get(`http://localhost:5000/getMatchesWithHero/${this.props.location.state.heroId}`) // 25
         const heroData = await axios.get('http://localhost:5000/heroData') // hero list
-        this.setState({matches: matches.data.matches, heroData: heroData.data.result.heroes, isLoading: false})
+        const itemData = await axios.get('http://localhost:5000/items') // items list
+        const heroId = heroData.data.result.heroes.find(hero => hero.localized_name.toLowerCase() === this.props.match.params.heroName.toLowerCase()).id
+        const matches = await axios.get(`http://localhost:5000/getMatchesWithHero/${heroId}`) // 25
+        this.setState({
+            matches: matches.data.matches, 
+            heroData: heroData.data.result.heroes, 
+            itemData: itemData.data.result.items,
+            isLoading: false,
+            heroId
+        })
     }
 
     render() {
@@ -31,8 +43,14 @@ class RecentMatchesPage extends Component {
         }
         return (
             <div>
-            25 Matches with {this.props.location.state.heroName}
-            <MatchesTableContainer matches={this.state.matches} heroData={this.state.heroData}/>
+            25 Matches with {this.props.match.params.heroName}
+            <HeroAveragesContainer 
+                matches={this.state.matches} 
+                heroData={this.state.heroData} 
+                heroId={this.state.heroId}
+                itemData={this.state.itemData}
+            />
+            <MatchesTableContainer matches={this.state.matches} heroData={this.state.heroData} />
             </div>
         )
     }
