@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-// import { thistle } from 'color-name';
 import HeroAveragesDisplay from './HeroAveragesDisplay'
 
 
@@ -113,6 +112,9 @@ class HeroAveragesContainer extends Component {
         const commonItems = this.calcCommonItems()
         let teammateImgs = [];
         let itemImgs = [];
+        let currPageHeroIcon = await axios.get(`http://localhost:5000/heroIcons/${this.props.heroNpcName}/2`)
+        // currPageHeroIcon = <img src={currPageHeroIcon.data} alt={''} /> // returns an img tag, switched bc using boots card
+        currPageHeroIcon = currPageHeroIcon.data
         await this.asyncForEach(commonTeammates, async (hero) => {
             const response = await axios.get(`http://localhost:5000/heroIcons/${hero}/0`) // getting hero icon
             teammateImgs.push(<img src={response.data} alt={''}/>)
@@ -122,7 +124,7 @@ class HeroAveragesContainer extends Component {
             const response = await axios.get(`http://localhost:5000/itemIcons/${item}`) // getting item icon
             itemImgs.push(<img src={response.data} alt={''}/>)
         })
-        this.setState({teammateImgs, itemImgs, isLoading: false})
+        this.setState({teammateImgs, itemImgs, currPageHeroIcon, isLoading: false})
     }
 
     render() {
@@ -139,6 +141,8 @@ class HeroAveragesContainer extends Component {
             deniesAvg={this.calcAvgFromAttr('denies')}
             gpmAvg={this.calcAvgFromAttr('gold_per_min')}
             xpmAvg={this.calcAvgFromAttr('xp_per_min')}
+            heroForPageImg={this.state.currPageHeroIcon}
+            heroForPageName={this.props.heroName}
             teammateImgs={this.state.teammateImgs}
             itemImgs={this.state.itemImgs}
         /> 

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import MatchesTableContainer from './MatchesTableContainer'
 import HeroAveragesContainer from './HeroAveragesContainer'
+import {Container} from 'react-bootstrap'
 
 class RecentMatchesPage extends Component {
     constructor() {
@@ -26,14 +27,17 @@ class RecentMatchesPage extends Component {
     async componentDidMount() {
         const heroData = await axios.get('http://localhost:5000/heroData') // hero list
         const itemData = await axios.get('http://localhost:5000/items') // items list
-        const heroId = heroData.data.result.heroes.find(hero => hero.localized_name.toLowerCase() === this.props.match.params.heroName.toLowerCase()).id
+        const heroForPage = heroData.data.result.heroes.find(hero => hero.localized_name.toLowerCase() === this.props.match.params.heroName.toLowerCase())
+        const heroId = heroForPage.id
+        const heroNpcName = heroForPage.name
         const matches = await axios.get(`http://localhost:5000/getMatchesWithHero/${heroId}`) // 25
         this.setState({
             matches: matches.data.matches, 
             heroData: heroData.data.result.heroes, 
             itemData: itemData.data.result.items,
             isLoading: false,
-            heroId
+            heroId,
+            heroNpcName
         })
     }
 
@@ -43,14 +47,18 @@ class RecentMatchesPage extends Component {
         }
         return (
             <div>
-            25 Matches with {this.props.match.params.heroName}
-            <HeroAveragesContainer 
-                matches={this.state.matches} 
-                heroData={this.state.heroData} 
-                heroId={this.state.heroId}
-                itemData={this.state.itemData}
-            />
-            <MatchesTableContainer matches={this.state.matches} heroData={this.state.heroData} />
+            <Container>
+                25 Matches with {this.props.match.params.heroName}
+                <HeroAveragesContainer 
+                    matches={this.state.matches} 
+                    heroData={this.state.heroData} 
+                    heroId={this.state.heroId}
+                    itemData={this.state.itemData}
+                    heroNpcName={this.state.heroNpcName}
+                    heroName={this.props.match.params.heroName}
+                />
+                <MatchesTableContainer matches={this.state.matches} heroData={this.state.heroData} />
+            </Container>
             </div>
         )
     }
