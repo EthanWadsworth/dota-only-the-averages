@@ -1,0 +1,34 @@
+#heroSearchBar {
+    margin: 10px;
+}
+
+.heroImgsContainer {
+    width: 55%;
+    border: solid 1px black;
+    /* margin: auto; */
+    border-radius: 3%;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.innerHeroContainer {
+    padding: 10px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center;  */
+    /* float: left; */
+    text-align: left;
+    margin: auto;
+}
+
+.heroCard {
+    border: solid 2px black;
+    cursor: pointer;
+    /* display: flex; */
+    /* display: inline; */
+    /* justify-content: right; */
+}

@@ -5,15 +5,19 @@ function HeroAveragesDisplay(props) {
     return (
         <Jumbotron>
             <Row>
-                <Col>
-                    <Card style={{ width: '18rem' }}>
+                <Col md={6}>
+                    <Card style={{ width: '90%' }}>
                         <Card.Img variant="top" src={props.heroForPageImg} />
                         <Card.Body>
                             <Card.Title>{props.heroForPageName}</Card.Title>
+                            <h3>Common Team Members</h3>
+                            <span>{props.teammateImgs}</span>
+                            <h3>Common Items</h3>
+                            <span>{props.itemImgs}</span>
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
+                <Col md={6}>
                     <Table>
                         <tbody>
                             <tr>
@@ -60,14 +64,14 @@ function HeroAveragesDisplay(props) {
                                 <th>XPM</th>
                                 <td>{props.xpmAvg}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th>TEAM</th>
                                 <td>{props.teammateImgs}</td>
                             </tr>
                             <tr>
                                 <th>ITEMS</th>
                                 <td>{props.itemImgs}</td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </Table>
                 </Col>

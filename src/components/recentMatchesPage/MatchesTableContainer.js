@@ -20,7 +20,7 @@ function MatchesTableContainer(props) {
 
     return (
         <div>
-        <Table style={{tableLayout: "auto"}} responsive="sm">
+        <Table style={{tableLayout: "auto"}} responsive="md">
             <thead>
                 <tr>
                     <th>Match ID</th>
