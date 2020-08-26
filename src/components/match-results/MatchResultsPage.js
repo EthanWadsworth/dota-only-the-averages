@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 import ChartContainer from './ChartContainer'
-import InvalidMatchIdPage from '../matchNotFoundPage/InvalidMatchIdPage'
+// import InvalidMatchIdPage from '../matchNotFoundPage/InvalidMatchIdPage'
+import PickBanChartContainer from './pickBansChart/PickBanChartContainer'
 import MainNavbar from '../MainNavbar'
+import MatchResultsHeader from './MatchResultsHeader'
 
 class MatchResultsPage extends Component {
     constructor() {
@@ -92,7 +94,7 @@ class MatchResultsPage extends Component {
     }
 
     render() {
-        if (!this.state.heroIds || !this.state.items || !this.state.radiantPlayers || !this.state.direPlayers) {
+        if (!this.state.heroIds || !this.state.items || !this.state.radiantPlayers || !this.state.direPlayers || !this.state.matchData) {
             return <div>
                 <MainNavbar />
                 <h1>Loading...</h1>
@@ -105,6 +107,12 @@ class MatchResultsPage extends Component {
             return (
                 <div>
                     <MainNavbar />
+                    <MatchResultsHeader 
+                        duration={this.state.matchData.duration}
+                        radiantScore={this.state.matchData.radiant_score}
+                        direScore={this.state.matchData.dire_score}
+                        radiantWin={this.state.matchData.radiant_win}
+                    />
                     <h1>Match Results Page</h1>
                     <ChartContainer 
                         players={this.state.radiantPlayers} 
@@ -116,6 +124,7 @@ class MatchResultsPage extends Component {
                         items={this.state.items}
                         heroIds={this.state.heroIds}
                     />
+                    <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
                 </div>
             )
         } 

@@ -20,7 +20,7 @@ function App() {
             <Route exact path="/" component={HomePage} />
           </Switch>
         </BrowserRouter>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
