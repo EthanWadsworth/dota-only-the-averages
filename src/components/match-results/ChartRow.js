@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import './teamChartStyles.css'
 
 // might change to just handling the chart in a single component and the dropdown in another single component
 class ChartRow extends Component {
@@ -52,7 +53,7 @@ class ChartRow extends Component {
                 return
             } else {
                 const response = await axios.get(`http://localhost:5000/itemIcons/${item.name}`)
-                itemLinks.push(<img key={item.id} src={response.data} alt={''} style={{width: "20px", height:"20px", float:"left", display: "inline"}}></img>)
+                itemLinks.push(<img className="itemIcon" key={item.id} src={response.data} alt={''}></img>)
             }
         })
         this.setState({[prop]: itemLinks})
@@ -77,9 +78,9 @@ class ChartRow extends Component {
             return '-'
         } else if (restrictDecimals) {
             if (val >= 1000) {
-                return val.toFixed(1) + 'k'
+                return (val/1000).toFixed(1) + 'k'
             } else {
-                return val.toFixed(1)
+                return val
             }
         }
         return val
@@ -92,7 +93,7 @@ class ChartRow extends Component {
         // add ternary operations later 
         return (
             <tr>
-                <td><img src={this.state.heroIcon} alt={this.props.heroName}></img></td>
+                <td><span className="heroIconContainer"><img className="heroIcon" src={this.state.heroIcon} alt={this.props.heroName}></img></span></td>
                 <td>{this.formatText(this.props.player.level)}</td>
                 <td>{this.formatText(this.props.player.kills)}</td>
                 <td>{this.formatText(this.props.player.deaths)}</td>

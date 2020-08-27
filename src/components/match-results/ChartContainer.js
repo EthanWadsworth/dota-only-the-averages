@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Table from 'react-bootstrap/Table'
 import ChartRow from './ChartRow'
+import './teamChartStyles.css'
 
 class ChartContainer extends Component {
     constructor() {
@@ -38,25 +39,25 @@ class ChartContainer extends Component {
     render() {
         return (
             <div>
-                <Table style={{tableLayout: "auto"}} responsive="sm">
+                <Table className={this.props.teamChart} responsive>
                     <thead>
                         <tr>
-                            <th>Hero</th>
-                            <th>Lvl</th>
-                            <th>K</th>
-                            <th>D</th>
-                            <th>A</th>
-                            <th>Net</th>
-                            <th>LH</th>
-                            <th>DN</th>
-                            <th>GPM</th>
-                            <th>XPM</th>
-                            <th>DMG</th>
-                            <th>HEAL</th>
-                            <th>BLD</th>
-                            <th style={{width: "120px"}}>INV</th>
-                            <th>BPACK</th>
-                            <th>NTRL</th>
+                            <th id="heroCol">Hero</th>
+                            <th className="cell-small">Lvl</th>
+                            <th className="cell-small">K</th>
+                            <th className="cell-small">D</th>
+                            <th className="cell-small">A</th>
+                            <th className="cell-minor">Net</th>
+                            <th className="cell-minor">LH</th>
+                            <th className="cell-minor">DN</th>
+                            <th className="cell-minor">GPM</th>
+                            <th className="cell-minor">XPM</th>
+                            <th className="cell-minor">DMG</th>
+                            <th className="cell-minor">HEAL</th>
+                            <th className="cell-minor">BLD</th>
+                            <th id="invCol">INV</th>
+                            <th id="backpackCol">BPACK</th>
+                            <th id="ntrlCol">NTRL</th>
                         </tr>
                     </thead>
                     <tbody>

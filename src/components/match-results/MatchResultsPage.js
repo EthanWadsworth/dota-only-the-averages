@@ -43,16 +43,12 @@ class MatchResultsPage extends Component {
                     matchData: response.data.result
                 })
 
-                axios.get('http://localhost:5000/items')
-                .then(response => {
-                    this.setState({items: response.data.result.items})
-                })
+                const itemData = await axios.get('http://localhost:5000/items')
+                this.setState({items: itemData.data.result.items})
 
-                axios.get('http://localhost:5000/heroData')
-                .then(response => {
-                    const heroes = response.data.result.heroes
-                    this.setState({heroIds: heroes})
-                })
+                const heroData = await axios.get('http://localhost:5000/heroData')
+                const heroes = heroData.data.result.heroes
+                this.setState({heroIds: heroes})
             }
             this.setState({isLoading: false})
         // })
@@ -107,23 +103,28 @@ class MatchResultsPage extends Component {
             return (
                 <div>
                     <MainNavbar />
+                    <h1>Match Results Page</h1>
                     <MatchResultsHeader 
                         duration={this.state.matchData.duration}
                         radiantScore={this.state.matchData.radiant_score}
                         direScore={this.state.matchData.dire_score}
                         radiantWin={this.state.matchData.radiant_win}
                     />
-                    <h1>Match Results Page</h1>
+                    <h1>Radiant</h1>
                     <ChartContainer 
                         players={this.state.radiantPlayers} 
                         items={this.state.items}
                         heroIds={this.state.heroIds}
+                        teamChart={'RadiantChart'}
                     />
+                    <h1>Dire</h1>
                     <ChartContainer 
                         players={this.state.direPlayers} 
                         items={this.state.items}
                         heroIds={this.state.heroIds}
+                        teamChart={'DireChart'}
                     />
+                    <h1>Pick Bans</h1>
                     <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
                 </div>
             )

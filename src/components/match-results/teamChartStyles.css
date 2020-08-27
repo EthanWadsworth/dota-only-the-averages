@@ -1,0 +1,67 @@
+.RadiantChart tbody tr:nth-child(odd) {
+    background-color: rgba(66, 255, 160, 0.2)
+}
+
+.RadiantChart tbody tr:hover {
+    background-color: #d7d7d7;
+}
+
+.RadiantChart, .DireChart {
+    table-layout: fixed;
+    width: 1000px;
+    margin: auto;
+    /* text-align: center; */
+}
+
+.table td, .table th {
+    padding: 2px;
+}
+
+#heroCol {
+    width: 100px;
+}
+
+.cell-minor {
+    width: 50px;
+}
+
+.cell-small {
+    width: 35px;
+}
+
+#invCol {
+    width: 250px;
+    text-align: left;
+}
+
+#backpackCol {
+    width: 130px;
+    text-align: left;
+}
+
+#ntrlCol {
+    width: 50px;
+}
+
+.DireChart tbody tr:nth-child(odd) {
+    background-color: rgba(235, 96, 96, 0.2);
+}
+
+.DireChart tbody tr:hover {
+    background-color: #d7d7d7;
+}
+
+.heroIconContainer {
+    display: inline-block;
+}
+
+.itemIcon {
+    width: 38px;
+    height: 29px;
+    float: left;
+}
+
+.heroIcon {
+    width: 80%;
+    height: 80%;
+}
