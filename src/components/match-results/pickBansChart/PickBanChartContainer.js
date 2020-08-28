@@ -7,6 +7,7 @@ class PickBanChartContainer extends Component {
         super()
         this.state = {
             isLoading: true,
+            pickBansList: null,
             pickBanImgs: null
         }
     }
@@ -44,11 +45,11 @@ class PickBanChartContainer extends Component {
                 }
             }
         })
-        this.setState({pickBanImgs, isLoading: false})
+        this.setState({pickBanImgs, pickBansList: sortedPickBansList, isLoading: false})
     }
 
     render() {
-        return !this.state.isLoading ? <PickBanDisplay pickBanImgs={this.state.pickBanImgs}/> : null
+        return !this.state.isLoading ? <PickBanDisplay  pickBansList={this.state.pickBansList} pickBanImgs={this.state.pickBanImgs}/> : null
     }
 }
 

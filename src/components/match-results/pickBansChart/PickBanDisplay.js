@@ -1,23 +1,72 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import {Table, Tab} from 'react-bootstrap'
 import './styles/pickBanChartStyles.css'
 
 function PickBanDisplay(props) {
 
     // add classnames to img and td tags
-    const pickBanTableImgs = props.pickBanImgs.map(pickBan => <td><img className={pickBan.type} src={pickBan.heroIcon} alt={''} /></td>)
-    const pickBanTableLabels = props.pickBanImgs.map(pickBan => <td><p className={pickBan.type}>{pickBan.type}</p></td>)
+    // fix to add order and also split into radiant and dire lists
+    // now add pick orders to each img
+    let pickTracker = props.pickBansList.length - 1
+    // const pickBanTableImgs = props.pickBanImgs.map(pickBan => <td>
+    // <img className={pickBan.type} src={pickBan.heroIcon} alt={''} />
+    // <p className={pickBan.type}>{pickBan.type}, {props.pickBansList.length - pickTracker--}</p>
+    // </td>)
+    let radiantHeroes = [];
+    let direHeroes = [];
+    let bannedHeroes = [];
+    props.pickBanImgs.forEach(pickBan => {
+        if (pickBan.type === "BAN") {
+            bannedHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+        }
+        else if (pickBan.type === "RDNT") {
+            radiantHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+        } else {
+            direHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+        }
+    })
+    // const pickBanTableLabels = props.pickBanImgs.map(pickBan => <td><p className={pickBan.type}>{pickBan.type}</p></td>)
     return (
-        <Table>
-            <tbody style={{padding: "0px"}}>
+        // <Table className="pickBanChart">
+        //     <tbody style={{padding: "0px"}}>
+        //         <tr>
+        //             {pickBanTableImgs}
+        //         </tr>
+        //         <tr>
+        //             <td></td>
+        //         </tr>
+        //         {/* <tr>
+        //             {pickBanTableLabels}
+        //         </tr> */}
+        //     </tbody>
+        // </Table>
+        <Table style={{tableLayout: "fixed", width: "500px"}}>
+            <thead>
                 <tr>
-                    {pickBanTableImgs}
+                    <th></th>
+                    <th>Heroes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Radiant</th>
+                    <td>{radiantHeroes}</td>
                 </tr>
                 <tr>
-                    {pickBanTableLabels}
+                    <th>Dire</th>
+                    <td>{direHeroes}</td>
+                </tr>
+                <tr>
+                    <th>Bans</th>
+                    <td>{bannedHeroes}</td>
                 </tr>
             </tbody>
         </Table>
+        //{/* <div>
+    //     <div>{radiantHeroes}</div>
+    //     <div>{direHeroes}</div>
+    //     <div>{bannedHeroes}</div>
+    //     </div> */}
     )
 }
 
