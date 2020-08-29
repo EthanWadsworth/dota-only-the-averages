@@ -260,6 +260,11 @@
     left: 1px;
 }
 
+#minimapHandler {
+    border: solid 5px #3D4C5B;
+    display: inline-block;
+}
+
 #minimap {
     width: 100%;
     height: 100%;

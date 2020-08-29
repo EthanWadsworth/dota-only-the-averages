@@ -1,16 +1,39 @@
 .BAN {
     filter: grayscale(100%);
-    background: #8A8687;
 }
 
-.RDNT {
+#radiant {
     background: rgb(96, 196, 152);
 }
 
-.DIRE {
+#dire {
     background: #EA2655;
 }
 
-/* .pickBanChart {
+#bans {
+    background: #8A8687;
+}
 
-} */
+#pickBanChart {
+    table-layout: fixed;
+    width: 550px;
+    display: inline-block;
+    float: left;
+    text-align: left;
+    margin: 0;
+    border: solid 10px #3D4C5B;
+    background: #3D4C5B;
+}
+
+.table td, .table th {
+    border: none;
+}
+
+#pickBanChart tbody th {
+    width: 80px;
+}
+
+#pickBanChart td {
+    padding: 10px 0px;
+    float: left;
+}

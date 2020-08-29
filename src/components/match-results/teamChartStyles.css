@@ -6,6 +6,10 @@
     background-color: #d7d7d7;
 }
 
+.table {
+    color: #D7E0E9;
+}
+
 .RadiantChart, .DireChart {
     table-layout: fixed;
     width: 1000px;
@@ -13,8 +17,22 @@
     /* text-align: center; */
 }
 
+.RadiantChart {
+    background: #3D4C5B;
+    border: 5px solid #3D4C5B;
+}
+
+.DireChart {
+    background: #3D4C5B;
+    border: 5px solid #3D4C5B;
+}
+
 .table td, .table th {
     padding: 2px;
+}
+
+.table thead th {
+    border: none;
 }
 
 #heroCol {

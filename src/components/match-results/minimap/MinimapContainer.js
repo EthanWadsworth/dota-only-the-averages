@@ -11,6 +11,8 @@ function MinimapContainer(props) {
     const direBuildingStatus = buildingStatus(props.tower_status_dire)
     const direBarracksStatus = barracksStatus(props.barracks_status_dire)
     return (
+        <div id="minimapHandler">
+        {/* <h3>Building Status</h3> */}
         <div id="minimapContainer">
             <img id="minimap" src={minimap} alt={'dota2 minimap'}/>
             <div>
@@ -55,6 +57,7 @@ function MinimapContainer(props) {
                 <div className={props.winningTeam ? "radiant square" : "square gray-radiant"} id="radiantAncient"></div>
                 <div className={!props.winningTeam ? "dire square" : "square gray-dire"} id="direAncient"></div>
             </div>
+        </div>
         </div>
     )
 }

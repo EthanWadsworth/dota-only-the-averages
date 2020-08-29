@@ -125,15 +125,22 @@ class MatchResultsPage extends Component {
                         heroIds={this.state.heroIds}
                         teamChart={'DireChart'}
                     />
-                    <h1>Pick Bans</h1>
-                    <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
-                    <MinimapContainer 
-                        tower_status_radiant={this.state.matchData.tower_status_radiant}
-                        tower_status_dire={this.state.matchData.tower_status_dire}
-                        barracks_status_radiant={this.state.matchData.barracks_status_radiant}
-                        barracks_status_dire={this.state.matchData.barracks_status_dire}
-                        winningTeam={this.state.matchData.radiant_win}
-                    />
+                    <div>
+                        <div style={{display: "inline-block", float: "left"}}>
+                            <h1>Pick Bans</h1>
+                            <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
+                        </div>
+                        <div style={{display: "inline-block", float: "right"}}>
+                            <h1>Building Status</h1>
+                            <MinimapContainer 
+                                tower_status_radiant={this.state.matchData.tower_status_radiant}
+                                tower_status_dire={this.state.matchData.tower_status_dire}
+                                barracks_status_radiant={this.state.matchData.barracks_status_radiant}
+                                barracks_status_dire={this.state.matchData.barracks_status_dire}
+                                winningTeam={this.state.matchData.radiant_win}
+                            />
+                        </div>
+                    </div>
                 </div>
             )
         } 
