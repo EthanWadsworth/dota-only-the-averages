@@ -1,4 +1,4 @@
-function barracksStatus(val) {
+export function barracksStatus(val) {
     // val: 8 bit unsigned integer
     const botRanged = val & 32
     const botMelee = val & 16
@@ -9,7 +9,7 @@ function barracksStatus(val) {
     return {botRanged, botMelee, midRanged, midMelee, topRanged, topMelee}
 }
 
-function buildingStatus(val) {
+export function buildingStatus(val) {
     // val: 16 bit unsigned integer
     const ancientTop = val & 1024
     const ancientBot = val & 512
@@ -25,5 +25,5 @@ function buildingStatus(val) {
     return {ancientTop, ancientBot, botT3, botT2, botT1, midT3, midT2, midT1, topT3, topT2, topT1}
 }
 
-console.log(barracksStatus(48))
-console.log(buildingStatus(1974))
+// console.log(barracksStatus(48))
+// console.log(buildingStatus(454))

@@ -6,6 +6,7 @@ import ChartContainer from './ChartContainer'
 import PickBanChartContainer from './pickBansChart/PickBanChartContainer'
 import MainNavbar from '../MainNavbar'
 import MatchResultsHeader from './MatchResultsHeader'
+import MinimapContainer from './minimap/MinimapContainer'
 
 class MatchResultsPage extends Component {
     constructor() {
@@ -126,6 +127,13 @@ class MatchResultsPage extends Component {
                     />
                     <h1>Pick Bans</h1>
                     <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
+                    <MinimapContainer 
+                        tower_status_radiant={this.state.matchData.tower_status_radiant}
+                        tower_status_dire={this.state.matchData.tower_status_dire}
+                        barracks_status_radiant={this.state.matchData.barracks_status_radiant}
+                        barracks_status_dire={this.state.matchData.barracks_status_dire}
+                        winningTeam={this.state.matchData.radiant_win}
+                    />
                 </div>
             )
         } 

@@ -8,7 +8,8 @@ class PickBanChartContainer extends Component {
         this.state = {
             isLoading: true,
             pickBansList: null,
-            pickBanImgs: null
+            pickBanImgs: null,
+            pickBansExist: true
         }
     }
     
@@ -27,28 +28,37 @@ class PickBanChartContainer extends Component {
     async componentDidMount() {
         let pickBanImgs = [];
         // sorting objects based on pick order
-        const sortedPickBansList = this.props.pickBansList.sort((a, b) => (a.order > b.order) ? 1 : -1)
-        await this.asyncForEach(sortedPickBansList, async (pickBan) => {
-            let heroName = this.props.heroData.find(hero => hero.id === pickBan.hero_id)
-            if (heroName) {
-                heroName = heroName.name
-                const heroIcon = await axios.get(`http://localhost:5000/heroIcons/${heroName}/0`)
-                // hero ban
-                if (!pickBan.is_pick) {
-                    pickBanImgs.push({heroIcon: heroIcon.data, type: "BAN"})
+        // turbo matches dont container a pickBan list, need to account for that
+        if(!this.props.pickBansList) {
+            this.setState({pickBansExist: false})
+        } else {
+            const sortedPickBansList = this.props.pickBansList.sort((a, b) => (a.order > b.order) ? 1 : -1)
+            await this.asyncForEach(sortedPickBansList, async (pickBan) => {
+                let heroName = this.props.heroData.find(hero => hero.id === pickBan.hero_id)
+                if (heroName) {
+                    heroName = heroName.name
+                    const heroIcon = await axios.get(`http://localhost:5000/heroIcons/${heroName}/0`)
+                    // hero ban
+                    if (!pickBan.is_pick) {
+                        pickBanImgs.push({heroIcon: heroIcon.data, type: "BAN"})
+                    }
+                    // radiant team pick
+                    else if (!pickBan.team) {
+                        pickBanImgs.push({heroIcon: heroIcon.data, type: "RDNT"})
+                    } else {
+                        pickBanImgs.push({heroIcon: heroIcon.data, type: "DIRE"})
+                    }
                 }
-                // radiant team pick
-                else if (!pickBan.team) {
-                    pickBanImgs.push({heroIcon: heroIcon.data, type: "RDNT"})
-                } else {
-                    pickBanImgs.push({heroIcon: heroIcon.data, type: "DIRE"})
-                }
-            }
-        })
-        this.setState({pickBanImgs, pickBansList: sortedPickBansList, isLoading: false})
+            })
+            this.setState({pickBanImgs, pickBansList: sortedPickBansList})
+        }
+        this.setState({isLoading: false})
     }
 
     render() {
+        if (!this.state.pickBansExist) {
+            return null
+        }
         return !this.state.isLoading ? <PickBanDisplay  pickBansList={this.state.pickBansList} pickBanImgs={this.state.pickBanImgs}/> : null
     }
 }
