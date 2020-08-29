@@ -40,25 +40,25 @@ function PickBanDisplay(props) {
         //         </tr> */}
         //     </tbody>
         // </Table>
-        <Table style={{tableLayout: "fixed", width: "500px"}}>
+        <Table style={{tableLayout: "fixed", width: "550px", textAlign: "left", display: "inline"}}>
             <thead>
                 <tr>
-                    <th></th>
+                    <th style={{width: "100px"}}></th>
                     <th>Heroes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th>Radiant</th>
-                    <td>{radiantHeroes}</td>
+                    <td style={{float: "left"}}>{radiantHeroes}</td>
                 </tr>
                 <tr>
                     <th>Dire</th>
-                    <td>{direHeroes}</td>
+                    <td style={{float: "left"}}>{direHeroes}</td>
                 </tr>
                 <tr>
                     <th>Bans</th>
-                    <td>{bannedHeroes}</td>
+                    <td style={{float: "left"}}>{bannedHeroes}</td>
                 </tr>
             </tbody>
         </Table>

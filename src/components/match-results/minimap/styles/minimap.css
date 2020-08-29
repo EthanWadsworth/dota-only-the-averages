@@ -269,7 +269,7 @@
     position: relative;
     left: 0;
     top: 0;
-    display: block;
+    display: inline-block;
     width: 320px;
     height: 306px;
 }
