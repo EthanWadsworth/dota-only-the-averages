@@ -17,7 +17,7 @@ function PickBanDisplay(props) {
     let bannedHeroes = [];
     props.pickBanImgs.forEach(pickBan => {
         if (pickBan.type === "BAN") {
-            bannedHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+            bannedHeroes.push(<img src={pickBan.heroIcon} className={pickBan.type} alt={''} />)
         }
         else if (pickBan.type === "RDNT") {
             radiantHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
@@ -40,7 +40,7 @@ function PickBanDisplay(props) {
         //         </tr> */}
         //     </tbody>
         // </Table>
-        <Table style={{tableLayout: "fixed", width: "550px", textAlign: "left", display: "inline"}}>
+        <Table style={{tableLayout: "fixed", width: "550px", textAlign: "left"}}>
             <thead>
                 <tr>
                     <th style={{width: "100px"}}></th>

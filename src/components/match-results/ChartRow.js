@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {OverlayTrigger, Tooltip} from 'react-bootstrap'
 import './teamChartStyles.css'
 
 // might change to just handling the chart in a single component and the dropdown in another single component
@@ -53,7 +54,13 @@ class ChartRow extends Component {
                 return
             } else {
                 const response = await axios.get(`http://localhost:5000/itemIcons/${item.name}`)
-                itemLinks.push(<img className="itemIcon" key={item.id} src={response.data} alt={''}></img>)
+                itemLinks.push(
+                <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip id="button-tooltip-2">{item.localized_name}</Tooltip>}
+                >
+                  <img className="itemIcon" key={item.id} src={response.data} alt={''}></img>
+                </OverlayTrigger>)
             }
         })
         this.setState({[prop]: itemLinks})
@@ -93,7 +100,11 @@ class ChartRow extends Component {
         // add ternary operations later 
         return (
             <tr>
-                <td><span className="heroIconContainer"><img className="heroIcon" src={this.state.heroIcon} alt={this.props.heroName}></img></span></td>
+                <td><span className="heroIconContainer">
+                <OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-2">{this.props.localHeroName}</Tooltip>}>
+                    <img className="heroIcon" src={this.state.heroIcon} alt={this.props.heroName}></img>
+                </OverlayTrigger>
+                </span></td>
                 <td>{this.formatText(this.props.player.level)}</td>
                 <td>{this.formatText(this.props.player.kills)}</td>
                 <td>{this.formatText(this.props.player.deaths)}</td>

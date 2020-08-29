@@ -28,6 +28,7 @@ class ChartContainer extends Component {
                 key={player.player_slot} 
                 player={player} 
                 heroName={this.props.heroIds.find(hero => hero.id === player.hero_id).name}
+                localHeroName={this.props.heroIds.find(hero => hero.id === player.hero_id).localized_name}
                 items={this.props.items}
             />
         })
