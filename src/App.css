@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.radiant-color {
+  color: rgb(78, 189, 78);
+}
+
+.dire-color {
+  color: rgb(230, 59, 59);
+}
+
 body {
   background: #343a40;
   color: #D7E0E9;

@@ -5,3 +5,15 @@
 .table {
     background: #3D4C5B;
 }
+
+.table td, .table th {
+    padding: 8px;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #3D4C5B;
+}
+
+.table tbody tr:nth-child(odd) {
+    background: rgb(49, 71, 88);
+}

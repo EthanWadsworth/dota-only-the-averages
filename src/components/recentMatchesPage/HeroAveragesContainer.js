@@ -41,6 +41,19 @@ class HeroAveragesContainer extends Component {
         return wins/this.props.matches.length
     }
 
+    formatText(val, restrictDecimals) {
+        if (val === 0) {
+            return '-'
+        } else if (restrictDecimals) {
+            if (val >= 1000) {
+                return (val/1000).toFixed(1) + 'k'
+            } else {
+                return val
+            }
+        }
+        return val
+    }
+
     // calculating average net worth
     calcAvgNetWorth() {
         let sum = 0;
@@ -51,7 +64,7 @@ class HeroAveragesContainer extends Component {
                 }
             }
         })
-        return sum/this.props.matches.length
+        return this.formatText(sum/this.props.matches.length, true)
     }
 
     // calculating avg using a match attribute
@@ -64,7 +77,7 @@ class HeroAveragesContainer extends Component {
                 }
             }
         })
-        return sum/this.props.matches.length // fix display later
+        return this.formatText(sum/this.props.matches.length, true) // fix display later
     }
 
     calcCommonTeammates() {

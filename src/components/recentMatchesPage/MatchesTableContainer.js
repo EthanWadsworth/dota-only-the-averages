@@ -1,6 +1,7 @@
 import React from 'react'
 import {Table} from 'react-bootstrap'
 import MatchTableRow from './MatchTableRow'
+import './styles/recentMatchesPageStyles.css'
 
 function MatchesTableContainer(props) {
 
@@ -17,27 +18,21 @@ function MatchesTableContainer(props) {
                     direTeam.push(found.name)
                 }
             })
-            // let heroNames = match.players.map(player => {
-            //     const found = props.heroData.find(hero => player.hero_id === hero.id)
-            //     if (!found) {
-            //         return // fix later
-            //     }
-            //     return found.name
-            // })
             return <MatchTableRow key={match.match_id} match={match} heroNames={radiantTeam.concat(direTeam)}/>
         })
     }
 
     return (
         <div>
-        <Table style={{tableLayout: "auto"}} responsive="md">
+        <Table id="recentMatchesTable" style={{tableLayout: "auto"}} responsive>
             <thead>
                 <tr>
                     <th>Match ID</th>
                     <th>DUR</th>
-                    <th>R/D</th>
-                    <th>Radiant Heroes</th>
-                    <th>Dire Heroes</th>
+                    <th>Result</th>
+                    <th><span className="radiant-colo">R</span> / <span className="dire-colo">D</span></th>
+                    <th className="radiant-color">Radiant Heroes</th>
+                    <th className="dire-color">Dire Heroes</th>
                 </tr>
             </thead>
             <tbody>

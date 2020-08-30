@@ -42,7 +42,15 @@ class MatchTableRow extends Component {
             <tr>
                 <td><Link to={`/match/${this.props.match.match_id}`}>{this.props.match.match_id}</Link></td>
                 <td>{this.calcMatchDuration(this.props.match.duration)}</td>
-                <td>{this.props.match.radiant_score + "/" + this.props.match.dire_score}</td>
+                <td className={this.props.match.radiant_win ? "radiant-color" : "dire-color"}>
+                    {this.props.match.radiant_win ? "Radiant Victory" : "Dire Victory"}
+                </td>
+                <td>
+                    <span className="radiant-color">{this.props.match.radiant_score}</span>
+                    <span> / </span>
+                    <span className="dire-color">{this.props.match.dire_score}</span>
+                    {/* {this.props.match.radiant_score + " / " + this.props.match.dire_score} */}
+                </td>
                 <td>{this.state.radiantIcons}</td>
                 <td>{this.state.direIcons}</td>
             </tr>
