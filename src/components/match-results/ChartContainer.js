@@ -39,7 +39,7 @@ class ChartContainer extends Component {
     // Hero K D A NetW LH DN GPM XPM DMG HEAL BLD WARDS ITEMS
     render() {
         return (
-            <div>
+            <div className="teamTable">
                 <Table className={this.props.teamChart} responsive>
                     <thead>
                         <tr>

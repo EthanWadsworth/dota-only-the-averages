@@ -104,7 +104,6 @@ class MatchResultsPage extends Component {
             return (
                 <div>
                     <MainNavbar />
-                    <h1>Match Results Page</h1>
                     <MatchResultsHeader 
                         duration={this.state.matchData.duration}
                         radiantScore={this.state.matchData.radiant_score}
