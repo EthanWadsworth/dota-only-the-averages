@@ -43,7 +43,7 @@
 }
 
 #heroCol {
-    width: 60px;
+    width: 65px;
 }
 
 .cell-minor {
@@ -76,9 +76,9 @@
     background-color: #d7d7d7;
 }
 
-.heroIconContainer {
+/* .heroIconContainer {
     display: inline-block;
-}
+} */
 
 .itemIcon {
     width: 38px;
@@ -87,6 +87,6 @@
 }
 
 .heroIcon {
-    width: 80%;
-    height: 80%;
+    width: 50px;
+    height: 28px;
 }

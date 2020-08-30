@@ -12,7 +12,6 @@ import Footer from './components/Footer'
 function App() {
   return (
     <div className="App">
-      <Container>
         <BrowserRouter>
         {/* <MainNavbar /> */}
           <Switch>
@@ -22,7 +21,6 @@ function App() {
             <Route exact path="/" component={HomePage} />
           </Switch>
         </BrowserRouter>
-      </Container>
       {/* <Footer /> */}
     </div>
   );

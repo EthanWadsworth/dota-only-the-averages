@@ -41,6 +41,7 @@ class HeroAveragesContainer extends Component {
         return wins/this.props.matches.length
     }
 
+    // text formatting for averages 
     formatText(val, restrictDecimals) {
         if (val === 0) {
             return '-'
@@ -153,7 +154,7 @@ class HeroAveragesContainer extends Component {
 
         await this.asyncForEach(commonItems, async (item) => {
             const response = await axios.get(`http://localhost:5000/itemIcons/${item}`) // getting item icon
-            itemImgs.push(<img src={response.data} alt={''}/>)
+            itemImgs.push(<img style={{width: "48px", height: "36px"}} src={response.data} alt={''}/>)
         })
         this.setState({teammateImgs, itemImgs, currPageHeroIcon, isLoading: false})
     }

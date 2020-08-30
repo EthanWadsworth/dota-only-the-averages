@@ -48,16 +48,16 @@ function PickBanDisplay(props) {
                 </tr>
             </thead>
             <tbody>
-                <tr id="radiant">
-                    <th>Radiant</th>
+                <tr>
+                    <th id="radiant">Radiant</th>
                     <td>{radiantHeroes}</td>
                 </tr>
-                <tr id="dire">
-                    <th>Dire</th>
+                <tr>
+                    <th id="dire">Dire</th>
                     <td>{direHeroes}</td>
                 </tr>
-                <tr id="bans">
-                    <th>Bans</th>
+                <tr>
+                    <th id="bans">Bans</th>
                     <td>{bannedHeroes}</td>
                 </tr>
             </tbody>

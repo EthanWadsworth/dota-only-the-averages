@@ -8,8 +8,8 @@ function MatchResultsHeader(props) {
 
     return (
         <div style={{textAlign: "center"}}>
-            <h1>{props.radiantWin ? "Radiant" : "Dire"} Victory</h1>
-            <p><span>{props.radiantScore}</span> <span>{props.direScore}</span></p>
+            <h1 className={props.radiantWin ? "radiant-color" : "dire-color"}>{props.radiantWin ? "Radiant" : "Dire"} Victory</h1>
+            <p><span className="radiant-color">{props.radiantScore}</span> <span className="dire-color">{props.direScore}</span></p>
             <p>{calcMatchDuration()}</p>
         </div>
     )

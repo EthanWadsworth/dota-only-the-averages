@@ -49,3 +49,22 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.bg-dark {
+  background-color: #3D4C5B!important;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  padding: 0;
+}
+
+/* .container, .container-lg, .container-xl {
+  max-width: 1050px;
+} */
+
+@media (min-width: 1200px) {
+  .large-container {
+    max-width: 1040px;
+  }
+}
+

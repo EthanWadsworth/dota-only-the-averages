@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
+import {Container} from 'react-bootstrap'
 import ChartContainer from './ChartContainer'
 // import InvalidMatchIdPage from '../matchNotFoundPage/InvalidMatchIdPage'
 import PickBanChartContainer from './pickBansChart/PickBanChartContainer'
@@ -104,20 +105,21 @@ class MatchResultsPage extends Component {
             return (
                 <div>
                     <MainNavbar />
+                    <Container className="large-container">
                     <MatchResultsHeader 
                         duration={this.state.matchData.duration}
                         radiantScore={this.state.matchData.radiant_score}
                         direScore={this.state.matchData.dire_score}
                         radiantWin={this.state.matchData.radiant_win}
                     />
-                    <h1>Radiant</h1>
+                    <h1 className="radiant-color">Radiant</h1>
                     <ChartContainer 
                         players={this.state.radiantPlayers} 
                         items={this.state.items}
                         heroIds={this.state.heroIds}
                         teamChart={'RadiantChart'}
                     />
-                    <h1>Dire</h1>
+                    <h1 className="dire-color">Dire</h1>
                     <ChartContainer 
                         players={this.state.direPlayers} 
                         items={this.state.items}
@@ -140,6 +142,7 @@ class MatchResultsPage extends Component {
                             />
                         </div>
                     </div>
+                    </Container>
                 </div>
             )
         } 

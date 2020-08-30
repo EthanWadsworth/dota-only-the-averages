@@ -7,7 +7,7 @@ function HeroAveragesDisplay(props) {
         <Jumbotron className="averagesContainer page-container">
             <Row>
                 <Col md={6}>
-                    <Card style={{ width: '90%' }}>
+                    <Card style={{ width: '90%', background: "rgb(49, 71, 88)", margin: "auto" }}>
                         <Card.Img variant="top" src={props.heroForPageImg} />
                         <Card.Body>
                             <Card.Title>{props.heroForPageName}</Card.Title>
@@ -18,7 +18,7 @@ function HeroAveragesDisplay(props) {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={6}>
+                <Col md={6} style={{margin: "auto"}}>
                     <Table className="recentMatchesTable page-container">
                         <tbody>
                             <tr>
