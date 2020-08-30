@@ -1,9 +1,10 @@
 import React from 'react'
 import {Jumbotron, Row, Col, Card, Table} from 'react-bootstrap'
+import './styles/recentMatchesPageStyles.css'
 
 function HeroAveragesDisplay(props) {
     return (
-        <Jumbotron>
+        <Jumbotron className="averagesContainer page-container">
             <Row>
                 <Col md={6}>
                     <Card style={{ width: '90%' }}>
@@ -18,7 +19,7 @@ function HeroAveragesDisplay(props) {
                     </Card>
                 </Col>
                 <Col md={6}>
-                    <Table>
+                    <Table className="recentMatchesTable page-container">
                         <tbody>
                             <tr>
                                 <th>Win %</th>
@@ -68,14 +69,6 @@ function HeroAveragesDisplay(props) {
                                 <th>XPM</th>
                                 <td>{props.xpmAvg}</td>
                             </tr>
-                            {/* <tr>
-                                <th>TEAM</th>
-                                <td>{props.teammateImgs}</td>
-                            </tr>
-                            <tr>
-                                <th>ITEMS</th>
-                                <td>{props.itemImgs}</td>
-                            </tr> */}
                         </tbody>
                     </Table>
                 </Col>

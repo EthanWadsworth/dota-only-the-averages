@@ -6,7 +6,8 @@ class MatchTableRow extends Component {
     constructor() {
         super()
         this.state = {
-            heroIcons: null,
+            radiantIcons: null,
+            direIcons: null
         }
     }
 
@@ -29,7 +30,10 @@ class MatchTableRow extends Component {
             const response = await axios.get(`http://localhost:5000/heroIcons/${hero}/0`)
             heroIcons.push(<img key={counter++} src={response.data} alt={''}></img>)
         })
-        this.setState({heroIcons})
+        this.setState({
+            radiantIcons: heroIcons.slice(0, heroIcons.length/2), 
+            direIcons: heroIcons.slice(heroIcons.length/2, heroIcons.length)
+        })
 
     }
 
@@ -39,7 +43,8 @@ class MatchTableRow extends Component {
                 <td><Link to={`/match/${this.props.match.match_id}`}>{this.props.match.match_id}</Link></td>
                 <td>{this.calcMatchDuration(this.props.match.duration)}</td>
                 <td>{this.props.match.radiant_score + "/" + this.props.match.dire_score}</td>
-                <td>{this.state.heroIcons}</td>
+                <td>{this.state.radiantIcons}</td>
+                <td>{this.state.direIcons}</td>
             </tr>
         )
     }
