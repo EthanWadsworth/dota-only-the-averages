@@ -23,6 +23,24 @@ class HeroAveragesContainer extends Component {
         }
     }
 
+    // calculates win percent from 25 recent matches
+    calcWinPercentage() {
+        let wins = 0
+        this.props.matches.forEach(match => {
+            for (let i in match.players) {
+                if (match.players[i].hero_id === this.props.heroId) {
+                    if (match.players[i].player_slot < 120 && match.radiant_win) {
+                        wins++
+                    } else if (match.players[i].player_slot >= 128 && !match.radiant_win) {
+                        wins++
+                    }
+                    break
+                }
+            }
+        })
+        return wins/this.props.matches.length
+    }
+
     // calculating average net worth
     calcAvgNetWorth() {
         let sum = 0;
@@ -129,7 +147,8 @@ class HeroAveragesContainer extends Component {
 
     render() {
         return !this.state.isLoading ? 
-        <HeroAveragesDisplay 
+        <HeroAveragesDisplay
+            winAvg={this.calcWinPercentage()}
             killAvg={this.calcAvgFromAttr('kills')}
             deathAvg={this.calcAvgFromAttr('deaths')}
             assistAvg={this.calcAvgFromAttr('assists')}

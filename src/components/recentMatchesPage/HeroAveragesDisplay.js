@@ -21,6 +21,10 @@ function HeroAveragesDisplay(props) {
                     <Table>
                         <tbody>
                             <tr>
+                                <th>Win %</th>
+                                <td>{props.winAvg}</td>
+                            </tr>
+                            <tr>
                                 <th>Kills</th>
                                 <td>{props.killAvg}</td>
                             </tr>

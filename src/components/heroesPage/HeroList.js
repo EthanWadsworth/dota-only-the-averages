@@ -71,9 +71,13 @@ class HeroList extends Component {
                 <div>
                     <MainNavbar />
                     <SearchHeader onChange={this.onChange} />
-                    <div className="container heroImgsContainer">
-                        <div className="innerHeroContainer">
-                            {heroCards}
+                    <div id="heroes-outer-shadow">
+                        <div id="heroes-inside-border">
+                            <div className="container heroImgsContainer">
+                                <div className="innerHeroContainer">
+                                    {heroCards}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div> 
