@@ -106,12 +106,12 @@ class ChartRow extends Component {
                 </OverlayTrigger>
                 </span></td>
                 <td>{this.formatText(this.props.player.level)}</td>
-                <td>{this.formatText(this.props.player.kills)}</td>
-                <td>{this.formatText(this.props.player.deaths)}</td>
-                <td>{this.formatText(this.props.player.assists)}</td>
-                <td>{this.formatText(this.props.player.gold + this.props.player.gold_spent, true)}</td>
-                <td>{this.formatText(this.props.player.last_hits)}</td>
-                <td>{this.formatText(this.props.player.denies)}</td>
+                <td className="essential-stat">{this.formatText(this.props.player.kills)}</td>
+                <td className="essential-stat">{this.formatText(this.props.player.deaths)}</td>
+                <td className="essential-stat">{this.formatText(this.props.player.assists)}</td>
+                <td className="networth">{this.formatText(this.props.player.gold + this.props.player.gold_spent, true)}</td>
+                <td>{this.formatText(this.props.player.last_hits)} / {this.props.player.denies}</td>
+                {/* <td>{this.formatText(this.props.player.denies)}</td> */}
                 <td>{this.formatText(this.props.player.gold_per_min)}</td>
                 <td>{this.formatText(this.props.player.xp_per_min)}</td>
                 <td>{this.formatText(this.props.player.hero_damage, true)}</td>

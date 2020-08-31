@@ -54,9 +54,9 @@ body {
   background-color: #3D4C5B!important;
 }
 
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+/* .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
   padding: 0;
-}
+} */
 
 /* .container, .container-lg, .container-xl {
   max-width: 1050px;

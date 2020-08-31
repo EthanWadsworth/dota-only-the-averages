@@ -54,6 +54,10 @@
     width: 35px;
 }
 
+.cell-combined {
+    width: 80px;
+}
+
 #invCol {
     width: 250px;
     text-align: left;
@@ -89,4 +93,12 @@
 .heroIcon {
     width: 50px;
     height: 28px;
+}
+
+.networth {
+    color: rgb(214, 170, 24);
+}
+
+.essential-stat {
+    font-weight: 700;
 }

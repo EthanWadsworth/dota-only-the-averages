@@ -12,21 +12,33 @@ function PickBanDisplay(props) {
     // <img className={pickBan.type} src={pickBan.heroIcon} alt={''} />
     // <p className={pickBan.type}>{pickBan.type}, {props.pickBansList.length - pickTracker--}</p>
     // </td>)
-    let radiantHeroes = [];
-    let direHeroes = [];
-    let bannedHeroes = [];
+
+    // splits up into separate lists
+    // let radiantHeroes = [];
+    // let direHeroes = [];
+    // let bannedHeroes = [];
+    // props.pickBanImgs.forEach(pickBan => {
+    //     if (pickBan.type === "BAN") {
+    //         bannedHeroes.push(<img src={pickBan.heroIcon} className={pickBan.type} alt={''} />)
+    //     }
+    //     else if (pickBan.type === "RDNT") {
+    //         radiantHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+    //     } else {
+    //         direHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
+    //     }
+    // })
+
+    let list = [];
     props.pickBanImgs.forEach(pickBan => {
-        if (pickBan.type === "BAN") {
-            bannedHeroes.push(<img src={pickBan.heroIcon} className={pickBan.type} alt={''} />)
-        }
-        else if (pickBan.type === "RDNT") {
-            radiantHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
-        } else {
-            direHeroes.push(<img src={pickBan.heroIcon} alt={''} />)
-        }
+        list.push(<div className={`pickBanDisplay ${pickBan.type}`} style={{display: "inline", float: "left", background: "black"}}>
+            <img src={pickBan.heroIcon} className={pickBan.type} alt={''} />
+            <p className="pickBanText">{pickBan.type}</p>
+        </div>)
     })
     // const pickBanTableLabels = props.pickBanImgs.map(pickBan => <td><p className={pickBan.type}>{pickBan.type}</p></td>)
     return (
+        <div>{list}</div>
+
         // <Table className="pickBanChart">
         //     <tbody style={{padding: "0px"}}>
         //         <tr>
@@ -40,28 +52,30 @@ function PickBanDisplay(props) {
         //         </tr> */}
         //     </tbody>
         // </Table>
-        <Table id="pickBanChart">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Heroes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th id="radiant">Radiant</th>
-                    <td>{radiantHeroes}</td>
-                </tr>
-                <tr>
-                    <th id="dire">Dire</th>
-                    <td>{direHeroes}</td>
-                </tr>
-                <tr>
-                    <th id="bans">Bans</th>
-                    <td>{bannedHeroes}</td>
-                </tr>
-            </tbody>
-        </Table>
+
+        // <Table id="pickBanChart">
+        //     <thead>
+        //         <tr>
+        //             <th></th>
+        //             <th>Heroes</th>
+        //         </tr>
+        //     </thead>
+        //     <tbody>
+        //         <tr>
+        //             <th id="radiant">Radiant</th>
+        //             <td>{radiantHeroes}</td>
+        //         </tr>
+        //         <tr>
+        //             <th id="dire">Dire</th>
+        //             <td>{direHeroes}</td>
+        //         </tr>
+        //         <tr>
+        //             <th id="bans">Bans</th>
+        //             <td>{bannedHeroes}</td>
+        //         </tr>
+        //     </tbody>
+        // </Table>
+
         //{/* <div>
     //     <div>{radiantHeroes}</div>
     //     <div>{direHeroes}</div>

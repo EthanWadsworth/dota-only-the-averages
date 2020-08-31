@@ -127,8 +127,8 @@ class MatchResultsPage extends Component {
                         teamChart={'DireChart'}
                     />
                     <div>
-                        <div style={{display: "inline-block", float: "left"}}>
-                            <h1>Pick Bans</h1>
+                        <div style={{display: "inline-block", float: "left", width: "600px"}}>
+                            <h1>Pick Ban Order</h1>
                             <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
                         </div>
                         <div style={{display: "inline-block", float: "right"}}>

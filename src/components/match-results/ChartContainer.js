@@ -48,9 +48,9 @@ class ChartContainer extends Component {
                             <th className="cell-small">K</th>
                             <th className="cell-small">D</th>
                             <th className="cell-small">A</th>
-                            <th className="cell-minor">Net</th>
-                            <th className="cell-minor">LH</th>
-                            <th className="cell-minor">DN</th>
+                            <th className="cell-minor networth">NET</th>
+                            <th className="cell-combined">LH / DN</th>
+                            {/* <th className="cell-minor">DN</th> */}
                             <th className="cell-minor">GPM</th>
                             <th className="cell-minor">XPM</th>
                             <th className="cell-minor">DMG</th>

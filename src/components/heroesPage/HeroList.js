@@ -70,10 +70,10 @@ class HeroList extends Component {
             return (
                 <div>
                     <MainNavbar />
-                    <div id="heroes-outer-shadow" style={{marginTop: "50px"}}>
+                    <div id="heroes-outer-shadow">
                         <div id="heroes-inside-border">
                             <div className="container heroImgsContainer">
-                                <div style={{width: "90%", textAlign: "center", margin: "auto", background: "black", marginTop: "15px", paddingBottom: "10px"}}>
+                                <div id="heroSearchContainer">
                                     <h3>Choose a Hero</h3>
                                     <SearchHeader onChange={this.onChange} />
                                     <hr></hr>
