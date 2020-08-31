@@ -41,6 +41,7 @@ class HeroCard extends Component {
             <OverlayTrigger
             overlay={
               <Tooltip id={'tooltip-top'}>
+                {/* <img style={{width: "127px", height: "71px", opacity: "1.0"}} src={this.props.heroUrl} alt={''} onClick={this.handleClick} className="heroCard"/> */}
                 <strong>{this.props.hero.localized_name}</strong>
               </Tooltip>
             }

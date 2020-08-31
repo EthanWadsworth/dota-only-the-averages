@@ -44,15 +44,11 @@ class MainNavbar extends Component {
             <Container fluid>
                 <Navbar bg="dark" expand="lg">
                 <Container className="large-container">
-                    <Navbar.Brand href="#home">D-o-t-A</Navbar.Brand>
+                    <Navbar.Brand as={Link} to='/'>D-o-t-A</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                        <Link to="/">Home</Link>
-                        {/* <Link to="/match/1234">Match</Link> so this works for query params */}
-                        <Link to="/heroes">Heroes</Link>
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav.Link as={Link} to='/heroes'>Heroes</Nav.Link>
                         </Nav>
                         <form onSubmit={this.handleSubmit}>
                         {/* <Form inline> */}
