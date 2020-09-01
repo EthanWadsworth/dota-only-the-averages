@@ -1,0 +1,19 @@
+.minimap-pickBan-container {
+    float: left;
+    width: 100%;
+}
+
+/* style={{display: "inline-block", float: "right"}} */
+.building-status {
+    float: none;
+}
+
+@media (min-width: 990px) {
+    .minimap-pickBan-container {
+        float: left;
+        width: 60%;
+    }
+    .building-status {
+        float: right;
+    }
+}

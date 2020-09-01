@@ -30,14 +30,16 @@ function PickBanDisplay(props) {
 
     let list = [];
     props.pickBanImgs.forEach(pickBan => {
-        list.push(<div className={`pickBanDisplay ${pickBan.type}`} style={{display: "inline", float: "left", background: "black"}}>
+        list.push(<div className={`pickBanDisplay ${pickBan.type}`}>
             <img src={pickBan.heroIcon} className={pickBan.type} alt={''} />
             <p className="pickBanText">{pickBan.type}</p>
         </div>)
     })
     // const pickBanTableLabels = props.pickBanImgs.map(pickBan => <td><p className={pickBan.type}>{pickBan.type}</p></td>)
     return (
-        <div>{list}</div>
+        <div className="outer-shadow-container">
+            <div className="pickBansContainer">{list}</div>
+        </div>
 
         // <Table className="pickBanChart">
         //     <tbody style={{padding: "0px"}}>

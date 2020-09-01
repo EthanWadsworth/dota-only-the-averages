@@ -8,6 +8,7 @@ import PickBanChartContainer from './pickBansChart/PickBanChartContainer'
 import MainNavbar from '../MainNavbar'
 import MatchResultsHeader from './MatchResultsHeader'
 import MinimapContainer from './minimap/MinimapContainer'
+import './matchResults.css'
 
 class MatchResultsPage extends Component {
     constructor() {
@@ -112,14 +113,14 @@ class MatchResultsPage extends Component {
                         direScore={this.state.matchData.dire_score}
                         radiantWin={this.state.matchData.radiant_win}
                     />
-                    <h1 className="radiant-color">Radiant</h1>
+                    <h1 className="radiant-color text-shadow">Radiant</h1>
                     <ChartContainer 
                         players={this.state.radiantPlayers} 
                         items={this.state.items}
                         heroIds={this.state.heroIds}
                         teamChart={'RadiantChart'}
                     />
-                    <h1 className="dire-color">Dire</h1>
+                    <h1 className="dire-color text-shadow">Dire</h1>
                     <ChartContainer 
                         players={this.state.direPlayers} 
                         items={this.state.items}
@@ -127,12 +128,12 @@ class MatchResultsPage extends Component {
                         teamChart={'DireChart'}
                     />
                     <div>
-                        <div style={{display: "inline-block", float: "left", width: "600px"}}>
-                            <h1>Pick Ban Order</h1>
+                        <div className="minimap-pickBan-container">
+                            <h1 className="text-shadow">Pick Ban Order</h1>
                             <PickBanChartContainer heroData={this.state.heroIds} pickBansList={this.state.matchData.picks_bans}/>
                         </div>
-                        <div style={{display: "inline-block", float: "right"}}>
-                            <h1>Building Status</h1>
+                        <div className="building-status">
+                            <h1 className="text-shadow">Building Status</h1>
                             <MinimapContainer 
                                 tower_status_radiant={this.state.matchData.tower_status_radiant}
                                 tower_status_dire={this.state.matchData.tower_status_dire}

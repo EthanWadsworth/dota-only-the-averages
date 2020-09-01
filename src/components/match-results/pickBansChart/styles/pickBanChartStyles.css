@@ -38,12 +38,31 @@
 
 .pickBanText {
     margin-bottom: 2px;
-    /* text-align: right; */
     font-size: 14px;
-    /* margin-right: 6px; */
     font-weight: 600;
 }
 
 .pickBanDisplay {
     margin: 5px 2px;
+    display: inline-block; 
+    background: black;
+}
+
+.pickBansContainer {
+    background: #3D4C5B;
+    padding: 5px 6px;
+    height: 100%;
+    display: inline-block;
+    border: solid 4px rgb(49, 71, 88);
+    -webkit-box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.75);
+    height: 100%;
+}
+
+.outer-shadow-container {
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.75);
+    background: blue;
 }
