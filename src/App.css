@@ -73,3 +73,31 @@ body {
   }
 }
 
+.navbar-light .navbar-brand {
+  color: #D7E0E9;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #D7E0E9;
+}
+
+.form-control {
+  background-color: rgb(39, 56, 70);
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 3px 1px rgba(0,0,0,0.75);
+  border: 1px solid black;
+}
+
+.btn-outline-success:hover {
+  background-color: rgba(78, 101, 124, 0.9);
+  /* opacity: 0.8; */
+  color: #28a745;
+}
+
+.form-control:focus {
+  background-color: rgb(54, 74, 94);
+  /* background-color: red; */
+}
+

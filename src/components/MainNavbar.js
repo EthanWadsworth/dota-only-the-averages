@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
-import {Navbar, Nav, FormControl, Button, Container} from 'react-bootstrap'
+import {Navbar, Nav, FormControl, Button, Container, Form} from 'react-bootstrap'
 import {Link, Redirect} from 'react-router-dom'
 
 class MainNavbar extends Component {
     constructor() {
         super()
-        this.state = {matchId: "", redirect: false, invalidSearchParam: true, loadInvalidSearchMsg: false}
+        this.state = {matchId: "", redirect: false, invalidSearchParam: true, loadInvalidSearchMsg: false, isClicked: false}
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     // updates state to perform redirect to desired page
@@ -34,6 +35,10 @@ class MainNavbar extends Component {
         this.setState({matchId: event.target.value})
     }
 
+    handleClick(event) {
+        this.setState({isClicked: true})
+    }
+
     render() {
         if (this.state.redirect) {
             // this.setState({redirect: false})
@@ -41,7 +46,6 @@ class MainNavbar extends Component {
         }
         return (
             <div>
-            <Container fluid>
                 <Navbar bg="dark" expand="lg">
                 <Container className="large-container">
                     <Navbar.Brand as={Link} to='/'>D-o-t-A</Navbar.Brand>
@@ -51,16 +55,22 @@ class MainNavbar extends Component {
                         <Nav.Link as={Link} to='/heroes'>Heroes</Nav.Link>
                         </Nav>
                         <form onSubmit={this.handleSubmit}>
-                        {/* <Form inline> */}
-                            <FormControl value={this.state.matchId} type="text" placeholder="Match ID" onChange={this.handleChange} className="mr-sm-2" />
+                        <Form inline>
+                            <FormControl 
+                                value={this.state.matchId} 
+                                type="text" 
+                                placeholder="Match ID" 
+                                onChange={this.handleChange} 
+                                onClick={this.handleClick}
+                                className={this.state.isClicked ? "text-clicked mr-sm-2" : "mr-sm-2"}
+                            />
                             <Button type="submit" variant="outline-success">Search</Button>
                             {this.state.loadInvalidSearchMsg ? <p>Invalid</p> : null}
-                        {/* </Form> */}
+                        </Form>
                         </form>
                     </Navbar.Collapse>
                 </Container>
                 </Navbar>
-                </Container>
             </div>
         )
     }
